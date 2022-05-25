@@ -60,10 +60,10 @@ void ShowDecimalFraction(Fraction a)
 
 void Show(Fraction a)
 {
-	if (a.numerator < a.denominator)
+	if (a.numerator < a.denominator && a.numerator > 0)
 		std::cout << a.numerator << "/" << a.denominator << std::endl;
-	else if (a.numerator > a.denominator)
-		std::cout << a.numerator / a.denominator << " and " << a.numerator % a.denominator << "/"
+	else if (a.numerator > a.denominator || a.numerator < 0 && a.numerator * (-1) > a.denominator)
+		std::cout << a.numerator / a.denominator << " and " << abs(a.numerator) % a.denominator << "/"
 		<< a.denominator << std::endl;
 }
 
@@ -71,10 +71,10 @@ int GreatestCommonDivisor(Fraction a)
 {
 	while (a.denominator > 0)
 	{
-		a.numerator = a.numerator % a.denominator;
+		a.numerator = abs(a.numerator)% a.denominator;
 		std::swap(a.numerator, a.denominator);
 	}
-	return a.numerator;
+	return abs(a.numerator);
 }
 
 void FractionReduction(Fraction a)
